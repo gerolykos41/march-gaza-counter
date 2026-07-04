@@ -4,45 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Χρονολόγιο Αντίστασης στη Λήθη — March To Gaza Greece</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+:root {
+  --paper: #113b02;
+  --paper-raise: #1a5203;
+  --ink: #e9e3c9;
+  --ink-soft: #e9e3c9;
+  --muted: #b8c9a0;
+  --hairline: #2a6010;
+  --navy: #e9e3c9;
+  --navy-soft: #e9e3c9;
+  --pink: #F48FB1;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: #f5f2ec; font-family: 'Barlow Condensed', sans-serif; color: #1a1a1a; }
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1.5rem 2rem; text-align: center; }
-.brand { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: #999; font-weight: 400; margin-bottom: 2rem; }
-.days-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 20vw, 160px); color: #1a1a1a; line-height: 1; letter-spacing: 2px; display: block; }
-.days-sub { font-size: clamp(11px, 2.5vw, 15px); letter-spacing: 0.18em; text-transform: uppercase; color: #999; font-weight: 400; margin-top: 8px; display: block; }
-.headline-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 7vw, 60px); color: #1a1a1a; letter-spacing: 3px; margin-top: 2rem; line-height: 1.05; }
-.scroll-hint { margin-top: 3rem; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; animation: bounce 2s infinite; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-.timeline-section { padding: 4rem 0 6rem; position: relative; }
+body { background: var(--paper); font-family: 'Inter', sans-serif; color: var(--ink); position: relative; }
+body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 10px; background: var(--navy); z-index: 50; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3.5rem 1.5rem 1rem; text-align: center; }
+.brand { font-family: 'Oswald', sans-serif; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--navy-soft); font-weight: 500; margin-bottom: 2.5rem; }
+.days-big { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(80px, 20vw, 160px); color: var(--navy); line-height: 1; letter-spacing: -2px; display: block; }
+.days-sub { font-family: 'Inter', sans-serif; font-size: clamp(11px, 2.5vw, 15px); letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-soft); font-weight: 500; margin-top: 10px; display: block; }
+.headline-big { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(30px, 7vw, 62px); color: var(--navy); letter-spacing: 0.5px; margin-top: 2.2rem; line-height: 1.05; text-transform: uppercase; position: relative; display: inline-block; padding-bottom: 18px; }
+.headline-big::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 4px; background: var(--navy); }
+
+/* TIMELINE */
+.timeline-section { padding: 2rem 0 6rem; position: relative; }
 .timeline-inner { position: relative; max-width: 900px; margin: 0 auto; padding: 0 1rem; }
-#breath-canvas { position: absolute; left: 50%; top: 0; transform: translateX(-50%); pointer-events: none; z-index: 1; }
+#spine-line { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 3px; background: var(--navy); opacity: 0.18; pointer-events: none; z-index: 1; }
 .events-wrap { position: relative; z-index: 2; }
 .ev { display: flex; align-items: flex-start; position: absolute; width: 100%; }
-.ev-left { padding-right: calc(50% + 30px); justify-content: flex-end; text-align: right; }
-.ev-right { padding-left: calc(50% + 30px); text-align: left; }
-.ev-dot { position: absolute; left: 50%; transform: translate(-50%, 5px); width: 7px; height: 7px; border-radius: 50%; background: #1a1a1a; z-index: 3; }
-.ev-dot.red { background: #c0392b; width: 10px; height: 10px; transform: translate(-50%, 3px); }
-.ev-dot.green { background: #2e7d52; width: 10px; height: 10px; transform: translate(-50%, 3px); }
+.ev-left { padding-right: calc(50% + 28px); justify-content: flex-end; text-align: right; }
+.ev-right { padding-left: calc(50% + 28px); text-align: left; }
+.ev-dot { position: absolute; left: 50%; transform: translate(-50%, 5px); width: 7px; height: 7px; border-radius: 50%; background: var(--navy); z-index: 3; flex-shrink: 0; }
+.ev-dot.red { background: #e9e3c9; }
+.ev-dot.green { background: #e9e3c9; }
 .ev-inner { max-width: 190px; }
-@media (max-width: 600px) { .ev-inner { max-width: 120px; } .ev-left { padding-right: calc(50% + 20px); } .ev-right { padding-left: calc(50% + 20px); } }
-.ev-date { font-size: clamp(9px, 1.8vw, 11px); letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; font-weight: 400; display: block; margin-bottom: 3px; }
-.ev-title { font-size: clamp(12px, 2.2vw, 14px); font-weight: 700; color: #1a1a1a; line-height: 1.3; letter-spacing: 0.02em; text-decoration: none; display: block; transition: color 0.2s; }
-.ev-title:hover { color: #555; }
-.ev-title.red { color: #c0392b; }
-.ev-title.red:hover { color: #a02a20; }
-.ev-title.green { color: #2e7d52; }
-.ev-title.green:hover { color: #1a5c3a; }
-.legend { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; }
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.social-section { border-top: 0.5px solid #ddd; padding: 2.5rem 1rem; text-align: center; }
+@media (max-width: 600px) { .ev-inner { max-width: 120px; } .ev-left { padding-right: calc(50% + 18px); } .ev-right { padding-left: calc(50% + 18px); } }
+.ev-date { font-family: 'Inter', sans-serif; font-size: clamp(9px, 1.8vw, 11px); letter-spacing: 0.1em; text-transform: uppercase; color: #e9e3c9; font-weight: 600; display: block; margin-bottom: 3px; }
+.ev-title { font-family: 'Inter', sans-serif; font-size: clamp(12px, 2.2vw, 13px); font-weight: 600; color: var(--navy); line-height: 1.35; letter-spacing: 0.01em; text-decoration: none; display: block; transition: color 0.15s; }
+.ev-title:hover { color: var(--pink); }
+.ev-title.red { color: #e9e3c9; font-weight: 800; }
+.ev-title.red:hover { color: var(--pink); }
+.ev-title.green { color: #e9e3c9; }
+.ev-title.green:hover { color: var(--pink); }
+
+/* SOCIAL */
+.social-section { border-top: 1px solid var(--hairline); padding: 2.5rem 1rem; text-align: center; }
 .social-bar { display: flex; justify-content: center; gap: clamp(16px, 4vw, 36px); flex-wrap: wrap; margin-bottom: 1.5rem; }
-.social-link { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #888; text-decoration: none; font-weight: 500; transition: color 0.2s; }
-.social-link:hover { color: #1a1a1a; }
-.footer-brand { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; }
+.social-link { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-soft); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+.social-link:hover { color: var(--pink); }
+.footer-brand { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -52,17 +66,11 @@ body { background: #f5f2ec; font-family: 'Barlow Condensed', sans-serif; color: 
   <span class="days-big" id="dnum">—</span>
   <span class="days-sub">μέρες γενοκτονίας — 7 Οκτ 2023</span>
   <div class="headline-big">Η ΓΕΝΟΚΤΟΝΙΑ ΣΥΝΕΧΙΖΕΤΑΙ</div>
-  <div class="scroll-hint">scroll ↓</div>
 </section>
 
 <section class="timeline-section">
   <div class="timeline-inner">
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div> Κρίσιμο γεγονός</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#2e7d52"></div> Αλληλεγγύη &amp; Αντίσταση</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#1a1a1a"></div> Γεγονός</div>
-    </div>
-    <canvas id="breath-canvas" width="40"></canvas>
+    <div id="spine-line"></div>
     <div class="events-wrap" id="events-wrap"></div>
   </div>
 </section>
@@ -80,54 +88,106 @@ body { background: #f5f2ec; font-family: 'Barlow Condensed', sans-serif; color: 
 <script>
 const START_DATE = new Date('2023-10-07');
 const PX_PER_DAY = 28;
-const MIN_GAP = 60;
+const MIN_GAP = 58;
 
 document.getElementById('dnum').textContent = Math.floor((new Date() - START_DATE) / 86400000);
 
-// type: 'critical' = κόκκινο, 'solidarity' = πράσινο, 'normal' = μαύρο
 const EVENTS = [
   { date:'2023-10-07', title:'Έναρξη της γενοκτονίας — ολοκληρωτικός βομβαρδισμός της Γάζας', link:'https://www.aljazeera.com/news/2025/10/7/two-years-of-israels-genocide-in-gaza-by-the-numbers', type:'critical' },
+  { date:'2023-10-09', title:'Ανακοίνωση «πλήρους πολιορκίας» — κοπή νερού, ρεύματος, καυσίμων και τροφίμων', link:'https://en.wikipedia.org/wiki/2023%E2%80%932024_Gaza_humanitarian_crisis', type:'critical' },
   { date:'2023-10-13', title:'Εκκένωση 1,1 εκ. Παλαιστινίων νότια — αδύνατη η μετακίνηση υπό βομβαρδισμό', link:'https://www.unrwa.org/newsroom/press-releases/unrwa-situation-report-1-situation-gaza', type:'critical' },
   { date:'2023-10-17', title:'Έκρηξη νοσοκομείου Αλ-Αχλί — εκατοντάδες νεκροί', link:'https://www.aljazeera.com/news/2023/10/18/what-do-we-know-about-the-strike-on-the-hospital-in-gaza', type:'critical' },
   { date:'2023-10-21', title:'Πρώτα φορτηγά βοήθειας μπαίνουν στη Γάζα — ελάχιστα και ανεπαρκή', link:'https://www.unrwa.org', type:'normal' },
   { date:'2023-10-25', title:'Οικογένεια του αρχηγού γραφείου Al Jazeera Wael Dahdouh σκοτώθηκε σε ισραηλινή αεροπορική επίθεση', link:'https://www.aljazeera.com/news/2023/10/25/al-jazeera-journalists-family-killed-in-gaza-strike', type:'critical' },
   { date:'2023-10-27', title:'Χερσαία εισβολή — 36ωρη ολοκληρωτική διακοπή τηλεπικοινωνιών', link:'https://www.aljazeera.com/news/2023/10/27/israel-launches-ground-invasion-of-gaza', type:'critical' },
+  { date:'2023-10-31', title:'Σφαγή στον καταυλισμό προσφύγων Τζαμπάλια — δεκάδες νεκροί σε έναν βομβαρδισμό', link:'https://www.aljazeera.com/news/2023/10/31/dozens-killed-in-israeli-air-attack-on-gaza-refugee-camp-medical-official', type:'critical' },
   { date:'2023-11-04', title:'Ολοκληρωτική πολιορκία της βόρειας Γάζας', link:'https://www.doctorswithoutborders.org/latest/timeline-bearing-witness-genocide-gaza', type:'critical' },
   { date:'2023-11-15', title:'Εισβολή στο νοσοκομείο Αλ-Σίφα — Γιατροί Χωρίς Σύνορα καταδικάζουν', link:'https://www.doctorswithoutborders.org/latest/timeline-bearing-witness-genocide-gaza', type:'critical' },
   { date:'2023-11-24', title:'Προσωρινή εκεχειρία — ανταλλαγή ομήρων και κρατουμένων', link:'https://www.aljazeera.com/news/2023/11/24/israel-hamas-truce-begins', type:'normal' },
   { date:'2023-12-01', title:'Κατάρρευση εκεχειρίας — συνέχιση βομβαρδισμών', link:'https://www.aljazeera.com/news/2023/12/1/israel-hamas-ceasefire-collapses', type:'critical' },
-  { date:'2023-12-06', title:'Νότια Αφρική καταθέτει αγωγή γενοκτονίας εναντίον του Ισραήλ στο Διεθνές Δικαστήριο Δικαιοσύνης', link:'https://www.aljazeera.com/news/2023/12/29/south-africa-files-genocide-case-against-israel-at-icj', type:'critical' },
+  { date:'2023-12-06', title:'Νότια Αφρική καταθέτει αγωγή γενοκτονίας στο Διεθνές Δικαστήριο Δικαιοσύνης', link:'https://www.aljazeera.com/news/2023/12/29/south-africa-files-genocide-case-against-israel-at-icj', type:'critical' },
   { date:'2023-12-14', title:'Ο κάμεραμαν του Al Jazeera Σάμερ Αμπού Ντάκα αφέθηκε να πεθαίνει — αποκλεισμένος από ασθενοφόρα', link:'https://www.aljazeera.com/news/2023/12/16/al-jazeera-cameraman-samer-abudaqa-killed-in-israeli-strike', type:'critical' },
   { date:'2023-12-18', title:'ΟΗΕ ψηφίζει εκεχειρία — οι ΗΠΑ βάζουν βέτο', link:'https://www.aljazeera.com/news/2023/12/8/un-security-council-vote-ceasefire-us-veto', type:'critical' },
   { date:'2023-12-18', title:'Σύλληψη γιατρού Αντνάν Αλ-Μπουρς, προϊσταμένου ορθοπεδικής Αλ-Σίφα — κατά τη διάρκεια βάρδιάς του', link:'https://www.aljazeera.com/news/2024/5/3/prominent-gaza-surgeon-dies-in-israeli-prison', type:'critical' },
   { date:'2024-01-07', title:'Δολοφονία του δημοσιογράφου Χάμζα Νταχντούχ — γιου του αρχηγού του γραφείου Al Jazeera', link:'https://www.middleeasteye.net/news/war-gaza-son-al-jazeeras-gaza-bureau-chief-killed-israeli-air-strike', type:'critical' },
+  { date:'2024-01-18', title:'Κανένα νοσοκομείο της Γάζας δεν λειτουργεί πλέον πλήρως', link:'https://en.wikipedia.org/wiki/Timeline_of_the_Gaza_Strip_healthcare_collapse', type:'critical' },
   { date:'2024-01-26', title:'Διεθνές Δικαστήριο Δικαιοσύνης διατάζει το Ισραήλ να αποτρέψει πράξεις γενοκτονίας', link:'https://www.aljazeera.com/news/2024/1/26/icj-orders-israel-to-prevent-acts-of-genocide-in-gaza', type:'critical' },
-  { date:'2024-01-29', title:'Δολοφονία της εξάχρονης Χιντ Ράτζαμπ — 335 σφαίρες στο αυτοκίνητο, δολοφονήθηκαν και οι δύο διασώστες', link:'https://www.aljazeera.com/news/2024/2/26/hind-rajab-were-israeli-troops-in-the-area-where-6-year-old-was-killed', type:'critical' },
+  { date:'2024-01-29', title:'Δολοφονία της εξάχρονης Χιντ Ράτζαμπ — 335 σφαίρες, δολοφονήθηκαν και οι δύο διασώστες', link:'https://www.aljazeera.com/news/2024/2/26/hind-rajab-were-israeli-troops-in-the-area-where-6-year-old-was-killed', type:'critical' },
   { date:'2024-01-29', title:'18 κράτη αναστέλλουν χρηματοδότηση UNRWA χωρίς αποδείξεις', link:'https://www.unrwa.org/newsroom/press-releases/unrwa-deeply-concerned-suspension-funding', type:'critical' },
   { date:'2024-02-12', title:'Ισραήλ ανακοινώνει εισβολή στη Ράφα — 1,5 εκ. εκτοπισμένοι εγκλωβισμένοι', link:'https://www.aljazeera.com/news/2024/2/12/israel-announces-rafah-offensive', type:'critical' },
+  { date:'2024-02-27', title:'Υπουργείο Υγείας Γάζας κάνει λόγο για αληθινό λιμό στη βόρεια Γάζα', link:'https://www.aljazeera.com/news/2024/2/28/at-least-576000-people-in-gaza-one-step-away-from-famine-un-says', type:'critical' },
   { date:'2024-03-01', title:'Σφαγή στην ουρά για βοήθεια — "Flour Massacre" — 100+ νεκροί', link:'https://www.aljazeera.com/news/2024/3/1/israel-opens-fire-on-aid-seekers-in-gaza', type:'critical' },
   { date:'2024-03-25', title:'Συμβούλιο Ασφαλείας ΟΗΕ ψηφίζει εκεχειρία — Ισραήλ αγνοεί', link:'https://www.aljazeera.com/news/2024/3/25/un-security-council-passes-ceasefire-resolution', type:'critical' },
+  { date:'2024-03-29', title:'Διεθνής ταξινόμηση IPC: βόρεια Γάζα σε Φάση 5 — πλήρης κατάρρευση επισιτιστικής ασφάλειας', link:'https://www.aljazeera.com/news/2024/3/18/famine-expected-in-gaza-between-now-and-may-what-to-know', type:'critical' },
   { date:'2024-04-01', title:'Ισραήλ σκοτώνει 7 εργαζομένους της World Central Kitchen σε συντεταγμένη επίθεση', link:'https://www.aljazeera.com/news/2024/4/2/world-central-kitchen-workers-killed-in-israeli-strike', type:'critical' },
   { date:'2024-04-19', title:'Θάνατος γιατρού Αντνάν Αλ-Μπουρς σε ισραηλινή φυλακή — σημάδια βασανιστηρίων', link:'https://www.aljazeera.com/news/2024/5/3/prominent-gaza-surgeon-dies-in-israeli-prison', type:'critical' },
+  { date:'2024-05-06', title:'Χερσαία επίθεση στη Ράφα ξεκινά παρά τις διεθνείς προειδοποιήσεις', link:'https://www.aljazeera.com/news/2024/5/7/israel-seizes-gazas-vital-rafah-border-crossing', type:'critical' },
   { date:'2024-05-07', title:'Ισραήλ καταλαμβάνει τη διάβαση Ράφα — ολικός αποκλεισμός βοήθειας', link:'https://www.middleeasteye.net/news/israel-seizes-rafah-crossing', type:'critical' },
   { date:'2024-05-20', title:'Διεθνές Ποινικό Δικαστήριο ζητά εντάλματα σύλληψης Νετανιάχου για εγκλήματα πολέμου', link:'https://www.aljazeera.com/news/2024/5/20/icc-prosecutor-seeks-arrest-warrants-for-netanyahu', type:'critical' },
   { date:'2024-05-24', title:'Διεθνές Δικαστήριο Δικαιοσύνης διατάζει διακοπή επίθεσης στη Ράφα — Ισραήλ αρνείται', link:'https://www.aljazeera.com/news/2024/5/24/icj-orders-israel-to-halt-rafah-offensive', type:'critical' },
+  { date:'2024-05-26', title:'Σφαγή σε καταυλισμό εκτοπισμένων στην Ταλ αλ-Σουλτάν, Ράφα — δεκάδες νεκροί από πυρκαγιά', link:'https://www.aljazeera.com/news/2024/5/28/israeli-strike-on-tal-al-sultan-rafah', type:'critical' },
+  { date:'2024-06-06', title:'Ισραήλ βομβαρδίζει σχολείο-καταφύγιο UNRWA στο Νουσεϊράτ — δεκάδες νεκροί', link:'https://www.doctorswithoutborders.org/latest/nuseirat-attacks-gaza-we-did-not-have-time-bury-them', type:'critical' },
+  { date:'2024-06-08', title:'Σφαγή στο Νουσεϊράτ — 274+ νεκροί Παλαιστίνιοι σε ισραηλινή επιχείρηση', link:'https://www.aljazeera.com/news/2024/6/14/wikipedia-war-fierce-row-erupts-over-israels-deadly-nuseirat-assault', type:'critical' },
+  { date:'2024-06-27', title:'Ισραηλινές δυνάμεις επανεισβάλλουν στη γειτονιά Αλ-Σούτζαΐγια — ολοκληρωτική ισοπέδωση', link:'https://www.aljazeera.com/news/2024/6/27/israel-re-invades-shujayea-gaza', type:'critical' },
   { date:'2024-07-19', title:'Διεθνές Δικαστήριο Δικαιοσύνης — παράνομη η ισραηλινή κατοχή παλαιστινιακών εδαφών', link:'https://www.aljazeera.com/news/2024/7/19/icj-rules-israels-occupation-of-palestinian-territories-illegal', type:'critical' },
+  { date:'2024-07-22', title:'Ισραήλ επανεισβάλλει στη Χαν Γιούνις — 73 νεκροί την πρώτη μέρα, καταστροφή Μεγάλου Τζαμιού', link:'https://www.aljazeera.com/news/2024/7/22/israel-launches-new-ground-offensive-in-khan-younis', type:'critical' },
   { date:'2024-07-31', title:'Δολοφονία δημοσιογράφου Al Jazeera Ισμαήλ Αλ-Γκουλ και κάμεραμαν Ράμι Αλ-Ρίφι — φορούσαν δημοσιογραφικά γιλέκα', link:'https://www.aljazeera.com/news/2024/7/31/al-jazeera-journalist-and-cameraman-killed-in-israeli-strike-in-gaza', type:'critical' },
+  { date:'2024-08-10', title:'Ισραήλ επιτίθεται σε 21 σχολεία-καταφύγια UNRWA σε έξι εβδομάδες — 274 νεκροί', link:'https://www.aljazeera.com/news/2024/8/10/israel-attacks-on-unrwa-schools', type:'critical' },
+  { date:'2024-08-31', title:'Εκτέλεση 6 ομήρων μέσα στη Γάζα από τη Χαμάς — ανάμεσά τους Αμερικανός πολίτης', link:'https://www.aljazeera.com/news/2024/9/1/six-hostages-killed-in-gaza-including-hersh-goldberg-polin', type:'normal' },
+  { date:'2024-09-01', title:'Μαζικές διαδηλώσεις σε ολόκληρο το Ισραήλ για τη δολοφονία ομήρων — 500.000 διαδηλωτές', link:'https://www.aljazeera.com/news/2024/9/2/hundreds-of-thousands-protest-in-israel-for-hostage-deal', type:'normal' },
+  { date:'2024-10-06', title:'Πλήρης πολιορκία βόρειας Γάζας — νέα χερσαία επιχείρηση γύρω από Τζαμπάλια, Μπέιτ Λαχία', link:'https://www.middleeasteye.net/news/israel-launches-fresh-ground-invasion-northern-gaza-what-we-know', type:'critical' },
+  { date:'2024-10-25', title:'«Μεγάλη σφαγή» στο Τζαμπάλια — 150+ νεκροί/τραυματίες, πρώτη έφοδος στο νοσοκομείο Καμάλ Άντγουαν', link:'https://www.democracynow.org/2024/10/25/headlines/a_major_massacre_in_jabaliya', type:'critical' },
+  { date:'2024-10-29', title:'Ισραηλινή Κνεσέτ ψηφίζει νόμο που απαγορεύει τη λειτουργία της UNRWA', link:'https://www.unrwa.org', type:'critical' },
+  { date:'2024-11-05', title:'Δεύτερη βίαιη έφοδος στο νοσοκομείο Καμάλ Άντγουαν — κρατούνται δεκάδες μέλη προσωπικού', link:'https://www.aljazeera.com/news/2024/11/5/dozens-killed-in-israeli-attacks-across-gaza', type:'critical' },
   { date:'2024-11-21', title:'Διεθνές Ποινικό Δικαστήριο εκδίδει ένταλμα σύλληψης Νετανιάχου', link:'https://www.aljazeera.com/news/2024/11/21/icc-issues-arrest-warrant-for-netanyahu', type:'critical' },
   { date:'2024-12-02', title:'Amnesty International: το Ισραήλ διαπράττει γενοκτονία στη Γάζα', link:'https://www.aljazeera.com/news/2024/12/5/amnesty-international-says-israel-is-committing-genocide-in-gaza', type:'critical' },
+  { date:'2024-12-05', title:'Πλήρης εκκένωση νοσοκομείου Καμάλ Άντγουαν — 33 νεκροί, μαζικές συλλήψεις προσωπικού', link:'https://www.aljazeera.com/news/2024/12/7/israel-attacks-hospital-and-a-home-in-northern-gaza', type:'critical' },
+  { date:'2024-12-13', title:'Χτύπημα σε καταφύγιο-ταχυδρομείο στο Νουσεϊράτ — 33 νεκροί', link:'https://en.wikipedia.org/wiki/Timeline_of_the_Gaza_war_(27_November_2024_%E2%80%93_18_January_2025)', type:'critical' },
   { date:'2025-01-19', title:'Εκεχειρία φάση 1 — ανταλλαγή ομήρων και κρατουμένων', link:'https://www.aljazeera.com/news/2025/1/19/israel-hamas-ceasefire-deal', type:'normal' },
   { date:'2025-01-28', title:'Ισραήλ νομοθετεί απαγόρευση λειτουργίας UNRWA — παράνομο βάσει διεθνούς δικαίου', link:'https://www.unrwa.org', type:'critical' },
+  { date:'2025-02-17', title:'Ισραήλ επαναλαμβάνει βομβαρδισμούς κατά τη διάρκεια διαπραγματεύσεων για φάση 2 εκεχειρίας', link:'https://www.aljazeera.com/news/2025/2/17/israel-resumes-attacks-during-ceasefire-talks', type:'critical' },
   { date:'2025-03-02', title:'Ισραήλ διακόπτει ολόκληρη την ανθρωπιστική βοήθεια στη Γάζα', link:'https://www.aljazeera.com/news/2025/3/2/israel-blocks-all-aid-to-gaza', type:'critical' },
   { date:'2025-03-18', title:'Ισραήλ παραβιάζει εκεχειρία — 400 νεκροί σε μία μέρα', link:'https://www.aljazeera.com/news/2025/3/18/israel-resumes-war-kills-400', type:'critical' },
+  { date:'2025-03-24', title:'Δολοφονία δημοσιογράφου Χοσάμ Σαμπάτ — κατηγορήθηκε αβάσιμα ως μέλος ένοπλης οργάνωσης', link:'https://en.wikipedia.org/wiki/Killing_of_journalists_in_the_Gaza_war', type:'critical' },
+  { date:'2025-04-16', title:'Δολοφονία φωτορεπόρτερ Φατίμα Χασούνα και 10 μελών οικογένειάς της — μία μέρα μετά την επιλογή της για τις Κάννες', link:'https://en.wikipedia.org/wiki/Killing_of_journalists_in_the_Gaza_war', type:'critical' },
   { date:'2025-05-02', title:'FFC — πλοίο Conscience δέχεται επίθεση από drones κοντά στη Μάλτα', link:'https://freedomflotilla.org', type:'solidarity' },
   { date:'2025-05-24', title:'Σφαγή σε σκηνόπολη Ράφα — εκατοντάδες νεκροί σε καταυλισμό εκτοπισμένων', link:'https://www.aljazeera.com/news/2025/5/24/israeli-strike-kills-hundreds-in-rafah-tent-camp', type:'critical' },
+  { date:'2025-06-09', title:'Στόλος «Σουμούντ» αναχωρεί — χερσαίο σκέλος του Global March to Gaza', link:'https://en.wikipedia.org/wiki/Soumoud_Convoy', type:'solidarity' },
   { date:'2025-06-09', title:'FFC — πλοίο Madleen με Greta Thunberg κατασχέθηκε από το Ισραήλ σε διεθνή ύδατα', link:'https://www.aljazeera.com/news/2025/6/9/israel-intercepts-gaza-bound-aid-ship', type:'solidarity' },
+  { date:'2025-06-12', title:'Αίγυπτος κρατά και απελαύνει εκατοντάδες ακτιβιστές του Global March to Gaza στο Κάιρο', link:'https://www.aljazeera.com/news/2025/6/13/egypt-libya-stop-activists-gathering-for-march-to-gaza-organisers-say', type:'solidarity' },
+  { date:'2025-06-15', title:'Στρατιωτικός αποκλεισμός στόλου «Σουμούντ» στη Σύρτη — ματαίωση πορείας προς Ράφα', link:'https://www.aljazeera.com/news/2025/6/13/egypt-libya-stop-activists-gathering-for-march-to-gaza-organisers-say', type:'solidarity' },
+  { date:'2025-07-13', title:'FFC — πλοίο Handala αναχωρεί από τη Σικελία για τη Γάζα', link:'https://freedomflotilla.org', type:'solidarity' },
   { date:'2025-07-26', title:'FFC — πλοίο Handala κατασχέθηκε από το Ισραήλ σε διεθνή ύδατα', link:'https://freedomflotilla.org', type:'solidarity' },
+  { date:'2025-08-10', title:'Δολοφονία δημοσιογράφου Al Jazeera Ανάς Αλ-Σαρίφ και 4 συναδέλφων σε στοχευμένο χτύπημα', link:'https://www.aljazeera.com/news/2025/8/10/al-jazeera-journalist-anas-al-sharif-killed-in-israeli-attack', type:'critical' },
+  { date:'2025-08-22', title:'Επίσημη κήρυξη λιμού στη Γάζα από τον διεθνή μηχανισμό IPC', link:'https://en.wikipedia.org/wiki/Gaza_Strip_famine', type:'critical' },
+  { date:'2025-08-25', title:'«Διπλό χτύπημα» στο νοσοκομείο Νάσερ — 21 νεκροί, ανάμεσά τους 5 δημοσιογράφοι', link:'https://www.aljazeera.com/news/2025/8/11/here-are-the-names-of-the-journalists-israel-killed-in-gaza', type:'critical' },
   { date:'2025-08-31', title:'Διεθνής Ένωση Μελετητών Γενοκτονίας: το Ισραήλ διαπράττει γενοκτονία', link:'https://www.aljazeera.com/news/2025/9/16/first-head-of-united-nations-body-declares-israels-gaza-war-a-genocide', type:'critical' },
   { date:'2025-09-16', title:'ΟΗΕ επίσημα: τέσσερις κατηγορίες γενοκτονίας έχουν διαπραχθεί', link:'https://www.aljazeera.com/news/2025/9/16/first-head-of-united-nations-body-declares-israels-gaza-war-a-genocide', type:'critical' },
   { date:'2025-10-01', title:'Global Sumud Flotilla — η μεγαλύτερη πολιτική ναυτική αποστολή στην ιστορία κατασχέθηκε από το Ισραήλ', link:'https://en.wikipedia.org/wiki/2025_Global_Sumud_Flotilla', type:'solidarity' },
+  { date:'2025-10-08', title:'Δεύτερη κατάσχεση στόλου αλληλεγγύης σε διεθνή ύδατα — ζωντανή μετάδοση επέμβασης', link:'https://www.aljazeera.com/news/2025/10/3/israel-dismantles-gaza-humanitarian-flotilla', type:'solidarity' },
   { date:'2025-10-10', title:'Νέα εκεχειρία — Γάζα ερείπιο: 90% κατεστραμμένη, 80% υπό ισραηλινή κατοχή', link:'https://www.aljazeera.com/news/2026/7/2/gaza-wars-1000-days-90-of-strip-destroyed-80-seized-by-israel', type:'normal' },
+  { date:'2025-10-24', title:'Πρώτη επέτειος — παγκόσμιες διαδηλώσεις αλληλεγγύης σε εκατοντάδες πόλεις', link:'https://www.aljazeera.com/news/2025/10/7/two-years-of-israels-genocide-in-gaza-by-the-numbers', type:'solidarity' },
+  { date:'2025-11-17', title:'Συμβούλιο Ασφαλείας ΟΗΕ εγκρίνει ψήφισμα 2803 — διεθνής δύναμη σταθεροποίησης για τη Γάζα', link:'https://www.middleeasteye.net/news/un-security-council-adopts-us-backed-resolution-gaza', type:'normal' },
+  { date:'2025-12-13', title:'Ισραήλ δολοφονεί ανώτερο διοικητή σε παραβίαση εκεχειρίας', link:'https://www.aljazeera.com/news/2025/11/11/how-many-times-has-israel-violated-the-gaza-ceasefire-here-are-the-numbers', type:'critical' },
+  { date:'2025-12-19', title:'Ο επίσημα κηρυγμένος λιμός στη Γάζα λήγει τυπικά — η επισιτιστική κρίση παραμένει', link:'https://www.middleeasteye.net/news/gaza-famine-officially-ends-ipc-report', type:'critical' },
+  { date:'2026-01-04', title:'Συνεχείς ισραηλινές επιθέσεις παρά την εκεχειρία — 3.000+ παραβιάσεις καταγεγραμμένες', link:'https://www.aljazeera.com/news/2025/11/11/how-many-times-has-israel-violated-the-gaza-ceasefire-here-are-the-numbers', type:'critical' },
+  { date:'2026-01-14', title:'Ανακοίνωση έναρξης «δεύτερης φάσης» σχεδίου ειρήνης — αφοπλισμός Χαμάς σε αδιέξοδο', link:'https://www.middleeasteye.net/news/gaza-ceasefire-second-phase-hamas-disarmament-stalled', type:'normal' },
+  { date:'2026-01-26', title:'Ολοκληρώνεται η επιστροφή σορών νεκρών ομήρων στο Ισραήλ', link:'https://www.middleeasteye.net/news/gaza-last-hostage-body-returned-israel', type:'normal' },
+  { date:'2026-02-03', title:'IDF ισχυρίζεται ότι εντόπισε όπλα κρυμμένα σε ανθρωπιστική βοήθεια UNRWA', link:'https://www.middleeasteye.net/news/israel-claims-weapons-hidden-unrwa-aid-gaza', type:'normal' },
+  { date:'2026-02-20', title:'Ισραήλ επαναλαμβάνει αεροπορικές επιθέσεις σε κατοικημένες περιοχές — δεκάδες νεκροί', link:'https://www.aljazeera.com/news/2026/2/20/israel-strikes-residential-areas-gaza', type:'critical' },
+  { date:'2026-03-15', title:'Νέα έκθεση ΟΗΕ: Γάζα ακατάλληλη για διαβίωση — συνολική καταστροφή υποδομών', link:'https://www.aljazeera.com/news/2026/3/15/un-report-gaza-uninhabitable', type:'critical' },
+  { date:'2026-03-29', title:'Στόλος αλληλεγγύης «Global Sumud» αποπλέει ξανά από τη Βαρκελώνη για τη Γάζα', link:'https://globalsumudflotilla.org', type:'solidarity' },
+  { date:'2026-04-12', title:'70 σκάφη αλληλεγγύης αποπλέουν από την Ισπανία — τρόφιμα, φάρμακα και σχολικά είδη', link:'https://www.aljazeera.com/news/2026/4/12/history-of-flotilla-campaigns-to-end-israels-siege-of-gaza', type:'solidarity' },
+  { date:'2026-04-25', title:'Ξεκινά το χερσαίο Global Sumud Land Convoy από τη Μαυριτανία', link:'https://www.globalsumudflotilla.org/missions/land-convoy/', type:'solidarity' },
+  { date:'2026-04-30', title:'Ισραηλινά κομάντο καταλαμβάνουν 22 σκάφη ανοιχτά της Κρήτης — 175 ακτιβιστές κρατούνται', link:'https://www.aljazeera.com/news/2026/4/29/israeli-military-speedboats-block-gaza-bound-aid-ship', type:'solidarity' },
+  { date:'2026-05-13', title:'Ο στόλος αποπλέει ξανά — πέντε σκάφη από ελληνικό νησί, ~55 από τη Μαρμαρίδα Τουρκίας', link:'https://freedomflotilla.org/2026/05/13/freedom-flotilla-coalition-launches-boats-for-new-phase-of-gaza-flotilla-mission/', type:'solidarity' },
+  { date:'2026-05-15', title:'Χερσαίο convoy αναχωρεί ξανά τη Μέρα της Νάκμπα — 230 συμμετέχοντες', link:'https://truthout.org/articles/humanitarian-convoy-stuck-in-libyan-desert-is-determined-to-reach-gaza/', type:'solidarity' },
+  { date:'2026-05-19', title:'Ισραηλινές δυνάμεις κατασχούν τον στόλο ανοιχτά της Κύπρου — 428 ακτιβιστές κρατούνται', link:'https://www.aljazeera.com/news/2026/5/18/israeli-forces-intercept-gaza-bound-aid-flotilla', type:'solidarity' },
+  { date:'2026-05-22', title:'Ακτιβιστές στόλου καταγγέλλουν ξυλοδαρμούς, βασανιστήρια και σεξουαλική βία στην ισραηλινή κράτηση', link:'https://www.aljazeera.com/news/2026/5/22/gaza-flotilla-activists-allege-abuse-sexual-assault-in-israeli-detention', type:'critical' },
+  { date:'2026-05-28', title:'Χερσαίο Global Sumud Land Convoy αναγκάζεται να τερματίσει αποστολή στη Σύρτη', link:'https://globalsumudflotilla.org/press/land-convoy-mission-status/', type:'solidarity' },
+  { date:'2026-06-20', title:'Ισραηλινά χτυπήματα σκοτώνουν 6 άτομα, ανάμεσά τους 2 παιδιά και κάμεραμαν Ahmed Wishah του Al Jazeera', link:'https://www.aljazeera.com/news/2026/6/20/al-jazeera-cameraman-ahmad-wishah-killed', type:'critical' },
+  { date:'2026-06-23', title:'Ανεξάρτητη Επιτροπή ΟΗΕ: Ισραήλ στοχοποιεί σκόπιμα παλαιστινιακά παιδιά ως μέρος γενοκτονίας', link:'https://www.ohchr.org/en/press-releases/2026/06/israel-continues-commit-genocide', type:'critical' },
+  { date:'2026-06-29', title:'Πάνω από 3.465 καταγεγραμμένες παραβιάσεις εκεχειρίας από το Ισραήλ σε εννέα μήνες', link:'https://www.aljazeera.com/news/2025/11/11/how-many-times-has-israel-violated-the-gaza-ceasefire-here-are-the-numbers', type:'critical' },
   { date:'2026-07-02', title:'1000 μέρες γενοκτονίας — 73.000+ νεκροί', link:'https://www.aljazeera.com/news/2026/7/2/gaza-wars-1000-days-90-of-strip-destroyed-80-seized-by-israel', type:'critical' },
 ];
 
@@ -148,7 +208,10 @@ function buildTimeline() {
   const totalH = placed[placed.length - 1] + 100;
   wrap.style.position = 'relative';
   wrap.style.height = totalH + 'px';
-  const pauseYs = [];
+
+  // Static spine line
+  const spine = document.getElementById('spine-line');
+  spine.style.height = totalH + 'px';
 
   events.forEach((ev, i) => {
     const y = placed[i];
@@ -181,63 +244,7 @@ function buildTimeline() {
 
     div.appendChild(inner);
     wrap.appendChild(div);
-    if (ev.type === 'critical') pauseYs.push(y);
   });
-
-  drawLine(totalH, pauseYs);
-}
-
-function drawLine(H, pauseYs) {
-  const canvas = document.getElementById('breath-canvas');
-  canvas.height = H;
-  const ctx = canvas.getContext('2d');
-  const cx = canvas.width / 2;
-  let t = 0, amp = 0, targetAmp = 10, growing = true;
-  // Breath cycle: ~4s in, ~4s out at 60fps
-  const breathIn = 0.006;
-  const breathOut = 0.004;
-
-  function isPaused(y) { return pauseYs.some(py => Math.abs(y - py) < 22); }
-
-  function stroke(ox, alpha, lw) {
-    ctx.beginPath();
-    ctx.strokeStyle = `rgba(30,25,18,${alpha})`;
-    ctx.lineWidth = lw;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    for (let y = 0; y < H; y++) {
-      const p = y / H;
-      const paused = isPaused(y);
-      const dist = paused ? Math.min(...pauseYs.map(py => Math.abs(y-py))) : 999;
-      const la = paused ? amp * Math.max(0, dist / 22) : amp;
-      const wave = la * (
-        0.65 * Math.sin(p * Math.PI * 8 + t) +
-        0.35 * Math.sin(p * Math.PI * 19 + t * 1.4)
-      );
-      const noise = (Math.random() - 0.5) * 0.8;
-      const x = cx + ox + wave + noise;
-      y === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, H);
-    stroke(-0.7, 0.08, 0.4);
-    stroke(0,    0.50, 1.0);
-    stroke(0.8,  0.08, 0.4);
-
-    t += 0.007;
-    if (growing) {
-      amp += (targetAmp - amp) * breathIn;
-      if (Math.abs(amp - targetAmp) < 0.08) { growing = false; targetAmp = 0; }
-    } else {
-      amp += (targetAmp - amp) * breathOut;
-      if (Math.abs(amp - targetAmp) < 0.08) { growing = true; targetAmp = 10; }
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
 }
 
 buildTimeline();
